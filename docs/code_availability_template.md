@@ -1,12 +1,9 @@
-# Code availability template
+# Code Availability Text
 
-The analysis and figure-generation code used in this study is available at:
+## Main Manuscript
 
-`[GitHub URL to be added]`
+Code used to preprocess social-media flood records, run LLM-assisted information extraction and geocoding, extract geospatial covariates with Google Earth Engine, construct event-level analytical panels, reproduce the coverage-gap analysis, and generate all main figures is available at https://github.com/zdx1999/coverage-gap-analysis. The repository excludes raw Weibo text, user identifiers, API keys and restricted third-party geospatial data; processed, de-identified analysis-ready tables should be supplied through the associated data repository when available.
 
-Archived code will be deposited at:
+## Supplementary Information
 
-`[Zenodo/Figshare/OSF DOI to be added]`
-
-The repository contains scripts for constructing the leave-one-event-out historical hotspot inventory, estimating event-level coverage gaps, running validity checks and regenerating the main figures. Large analysis-ready data files are not stored directly in the GitHub repository and are described in the accompanying data repository.
-
+The public code repository is organized into an upstream workflow (`scripts/upstream_workflow/`) and the final analysis/figure workflow. The upstream workflow documents Weibo screening, LLM-based extraction of flood status, time and place information, geocoding, GEE extraction of rainfall, night-time lights, population and terrain variables, event construction, and temporal robustness checks. The final workflow reproduces the leave-one-event-out historical inventory, coverage-gap statistics, validity checks and Figs. 1-5 from processed analysis-ready tables.

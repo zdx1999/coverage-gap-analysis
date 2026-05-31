@@ -12,4 +12,12 @@ rasterio
 cartopy
 pypinyin
 xgboost
-
+openai
+tqdm
+polars
+requests
+earthengine-api
+geemap
+xarray
+netCDF4
+jupyter

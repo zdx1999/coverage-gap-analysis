@@ -21,6 +21,11 @@ The study evaluates whether historical urban flood hotspot inventories cover rep
 
 ```text
 scripts/
+  upstream_workflow/                      # Weibo, LLM, geocoding, GEE and event-building workflow
+    01_weibo_preprocessing/
+    02_gee_extraction/
+    03_event_construction/
+    05_temporal_robustness/
   coverage_gap_analysis/
     run_coverage_gap_analysis.py          # main coverage-gap analysis
     run_coverage_gap_validity_checks.py   # random baseline and robustness checks
@@ -40,13 +45,16 @@ outputs/
   figures/                                # final manuscript figures as PNG previews
   tables/                                 # selected derived result tables
 docs/
-  five_figures_structure_content_plan.md
+  code_availability_template.md
+  figure_overview.md
   technical_note_validity_checks.md
 ```
 
 ## Data availability
 
 Large raw social-media, geospatial and gridded exposure files are not included in this code repository. The code expects processed analysis-ready files in `data/`; see `data/README.md` for required filenames and column schemas.
+
+The upstream workflow scripts are provided under `scripts/upstream_workflow/` to document the processing chain from Weibo record screening, LLM-based information extraction and geocoding to Google Earth Engine covariate extraction and event-panel construction. The public repository does not include raw Weibo text, user identifiers, API keys, or restricted third-party geospatial datasets.
 
 If the public release uses a data repository such as Zenodo, Figshare or OSF, place the DOI and download instructions here before submission.
 
@@ -90,3 +98,19 @@ The reported flood-impact footprint is derived from public social-media reports.
 
 Please cite the manuscript and data repository when available.
 
+
+## Upstream social-media and LLM workflow
+
+The upstream workflow is included for transparency and reproducibility of the data-processing logic:
+
+```text
+scripts/upstream_workflow/
+  01_weibo_preprocessing/       # Weibo screening, LLM extraction, location cleaning and geocoding notebook
+  02_gee_extraction/            # GEE rainfall, night-time lights, population and terrain extraction
+  03_event_construction/        # event metadata, extreme-event definition and heterogeneity panels
+  05_temporal_robustness/       # recent-baseline and late-period robustness checks
+  docs/file_manifest.csv        # source-to-package manifest from the original submission code package
+```
+
+The notebooks are distributed with execution outputs cleared. Configure local paths, vLLM/OpenAI-compatible endpoints,
+Amap/GEE credentials and data-access permissions before running the upstream workflow.
