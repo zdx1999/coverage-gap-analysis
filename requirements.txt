@@ -1,0 +1,15 @@
+numpy
+pandas
+matplotlib
+scipy
+statsmodels
+scikit-learn
+geopandas
+shapely
+pyproj
+contextily
+rasterio
+cartopy
+pypinyin
+xgboost
+
