@@ -9,17 +9,17 @@ import sys
 from pathlib import Path
 
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parent
 
 
 STEPS = [
-    ["scripts/coverage_gap_analysis/run_coverage_gap_analysis.py"],
-    ["scripts/coverage_gap_analysis/run_coverage_gap_validity_checks.py"],
-    ["scripts/figures/fig1_national_framework.py"],
-    ["scripts/figures/fig2_coverage_gap.py"],
-    ["scripts/figures/fig3_mechanisms.py"],
-    ["scripts/figures/fig4_exposure.py"],
-    ["scripts/figures/fig5_priorities.py"],
+    ["04_coverage_gap_analysis/run_coverage_gap_analysis.py"],
+    ["06_validity_robustness/run_coverage_gap_validity_checks.py"],
+    ["05_figure_generation/fig1_national_framework.py"],
+    ["05_figure_generation/fig2_coverage_gap.py"],
+    ["05_figure_generation/fig3_mechanisms.py"],
+    ["05_figure_generation/fig4_exposure.py"],
+    ["05_figure_generation/fig5_priorities.py"],
 ]
 
 

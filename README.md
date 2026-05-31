@@ -20,25 +20,12 @@ The study evaluates whether historical urban flood hotspot inventories cover rep
 ## Repository structure
 
 ```text
-scripts/
-  upstream_workflow/                      # Weibo, LLM, geocoding, GEE and event-building workflow
-    01_weibo_preprocessing/
-    02_gee_extraction/
-    03_event_construction/
-    05_temporal_robustness/
-  coverage_gap_analysis/
-    run_coverage_gap_analysis.py          # main coverage-gap analysis
-    run_coverage_gap_validity_checks.py   # random baseline and robustness checks
-  figures/
-    fig1_national_framework.py
-    fig2_coverage_gap.py
-    fig3_mechanisms.py
-    fig4_exposure.py
-    fig5_priorities.py
-  support/
-    fig2_zhengzhou_5551_final_refined_v5.py
-    fig2a_national_footprint.py
-  run_all.py
+01_weibo_preprocessing/                   # Weibo screening, LLM extraction, geocoding and quality checks
+02_gee_extraction/                        # GEE rainfall, population, night-time lights and terrain extraction
+03_event_construction/                    # event metadata, extreme-event definition and city heterogeneity panels
+04_coverage_gap_analysis/                 # leave-one-event-out historical inventory and coverage-gap analysis
+05_figure_generation/                     # final manuscript figure scripts and figure-specific support scripts
+06_validity_robustness/                   # random baseline, validity checks and temporal robustness scripts
 data/
   README.md                               # expected input data schema and filenames
 outputs/
@@ -48,13 +35,15 @@ docs/
   code_availability_template.md
   figure_overview.md
   technical_note_validity_checks.md
+  upstream_workflow/                      # original 2026-04-19 manifest and upstream notes
+run_all.py                                # run final analysis and regenerate main figures
 ```
 
 ## Data availability
 
 Large raw social-media, geospatial and gridded exposure files are not included in this code repository. The code expects processed analysis-ready files in `data/`; see `data/README.md` for required filenames and column schemas.
 
-The upstream workflow scripts are provided under `scripts/upstream_workflow/` to document the processing chain from Weibo record screening, LLM-based information extraction and geocoding to Google Earth Engine covariate extraction and event-panel construction. The public repository does not include raw Weibo text, user identifiers, API keys, or restricted third-party geospatial datasets.
+The numbered upstream workflow directories document the processing chain from Weibo record screening, LLM-based information extraction and geocoding to Google Earth Engine covariate extraction and event-panel construction. The public repository does not include raw Weibo text, user identifiers, API keys, or restricted third-party geospatial datasets.
 
 If the public release uses a data repository such as Zenodo, Figshare or OSF, place the DOI and download instructions here before submission.
 
@@ -73,19 +62,19 @@ Some map panels use optional geospatial packages and local shapefiles. If `conte
 After placing the required input files under `data/`, run:
 
 ```bash
-python scripts/run_all.py
+python run_all.py
 ```
 
 Or run the steps manually:
 
 ```bash
-python scripts/coverage_gap_analysis/run_coverage_gap_analysis.py
-python scripts/coverage_gap_analysis/run_coverage_gap_validity_checks.py
-python scripts/figures/fig1_national_framework.py
-python scripts/figures/fig2_coverage_gap.py
-python scripts/figures/fig3_mechanisms.py
-python scripts/figures/fig4_exposure.py
-python scripts/figures/fig5_priorities.py
+python 04_coverage_gap_analysis/run_coverage_gap_analysis.py
+python 06_validity_robustness/run_coverage_gap_validity_checks.py
+python 05_figure_generation/fig1_national_framework.py
+python 05_figure_generation/fig2_coverage_gap.py
+python 05_figure_generation/fig3_mechanisms.py
+python 05_figure_generation/fig4_exposure.py
+python 05_figure_generation/fig5_priorities.py
 ```
 
 The main analysis writes derived tables to `outputs/coverage_gap_analysis/`. Figure scripts write PNG/PDF outputs and figure-specific tables to `outputs/figures/`.
@@ -104,12 +93,11 @@ Please cite the manuscript and data repository when available.
 The upstream workflow is included for transparency and reproducibility of the data-processing logic:
 
 ```text
-scripts/upstream_workflow/
-  01_weibo_preprocessing/       # Weibo screening, LLM extraction, location cleaning and geocoding notebook
-  02_gee_extraction/            # GEE rainfall, night-time lights, population and terrain extraction
-  03_event_construction/        # event metadata, extreme-event definition and heterogeneity panels
-  05_temporal_robustness/       # recent-baseline and late-period robustness checks
-  docs/file_manifest.csv        # source-to-package manifest from the original submission code package
+01_weibo_preprocessing/         # Weibo screening, LLM extraction, location cleaning and geocoding notebook
+02_gee_extraction/              # GEE rainfall, night-time lights, population and terrain extraction
+03_event_construction/          # event metadata, extreme-event definition and heterogeneity panels
+06_validity_robustness/         # recent-baseline and late-period robustness checks
+docs/upstream_workflow/         # source-to-package manifest from the original submission code package
 ```
 
 The notebooks are distributed with execution outputs cleared. Configure local paths, vLLM/OpenAI-compatible endpoints,
