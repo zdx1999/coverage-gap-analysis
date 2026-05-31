@@ -1,0 +1,36 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Large or restricted input data
+data/*.csv
+data/*.xlsx
+data/*.parquet
+data/*.feather
+data/*.tif
+data/*.tiff
+data/*.shp
+data/*.shx
+data/*.dbf
+data/*.prj
+data/*.cpg
+data/GAIA_2024_Data/
+data/shapefiles/
+!data/README.md
+
+# Regenerated outputs
+outputs/coverage_gap_analysis/
+outputs/validity_checks/
+outputs/figures/*.pdf
+outputs/figures/*_model_inputs.csv
+outputs/figures/*_effects.csv
+outputs/figures/*_selected_events.csv
+
+# Manuscript files are managed outside this code repository
+*.docx
+*.doc
+
